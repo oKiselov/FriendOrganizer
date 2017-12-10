@@ -56,6 +56,10 @@
     <Compile Include="Migrations\201711251952377_AddedProgrammingLanguage.Designer.cs">
       <DependentUpon>201711251952377_AddedProgrammingLanguage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712102233243_AddedFriendNumbers.cs" />
+    <Compile Include="Migrations\201712102233243_AddedFriendNumbers.Designer.cs">
+      <DependentUpon>201712102233243_AddedFriendNumbers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -75,6 +79,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711251952377_AddedProgrammingLanguage.resx">
       <DependentUpon>201711251952377_AddedProgrammingLanguage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712102233243_AddedFriendNumbers.resx">
+      <DependentUpon>201712102233243_AddedFriendNumbers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace FriendOrganizer.DataAccess.Migrations
 {
     using FriendOrganizer.Model;
@@ -38,6 +40,12 @@ namespace FriendOrganizer.DataAccess.Migrations
                 new ProgrammingLanguage { Name = "F#" },
                 new ProgrammingLanguage { Name = "Swift" },
                 new ProgrammingLanguage { Name = "Java" });
+
+            // because we have to save friends before asking them for first or default 
+            context.SaveChanges();
+
+            context.FriendPhoneNumbers.AddOrUpdate(pn=>pn.Number, 
+                new FriendPhoneNumber{Number = "+49 12345678", FriendId = context.Friends.FirstOrDefault().Id});
         }
     }
 }

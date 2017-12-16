@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace FriendOrganizer.DataAccess.Migrations
@@ -44,8 +46,21 @@ namespace FriendOrganizer.DataAccess.Migrations
             // because we have to save friends before asking them for first or default 
             context.SaveChanges();
 
-            context.FriendPhoneNumbers.AddOrUpdate(pn=>pn.Number, 
-                new FriendPhoneNumber{Number = "+49 12345678", FriendId = context.Friends.FirstOrDefault().Id});
+            context.FriendPhoneNumbers.AddOrUpdate(pn => pn.Number,
+                new FriendPhoneNumber { Number = "+49 12345678", FriendId = context.Friends.FirstOrDefault().Id });
+
+            context.Meetings.AddOrUpdate(m => m.Title,
+                new Meeting
+                {
+                    Title = "Watching Soccer",
+                    DateFrom = new DateTime(2018, 5, 26),
+                    DateTo = new DateTime(2018, 5, 26),
+                    Friends = new List<Friend>
+                    {
+                        context.Friends.Single(f=>f.FirstName == "Thomas" && f.LastName == "Huber"),
+                        context.Friends.Single(f=>f.FirstName == "Julia" && f.LastName == "Egin")
+                    }
+                });
         }
     }
 }

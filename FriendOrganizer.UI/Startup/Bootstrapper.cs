@@ -20,37 +20,24 @@ namespace FriendOrganizer.UI.Startup
                 .As<IEventAggregator>()
                 .SingleInstance();
 
-            builder
-                .RegisterType<FriendOrganizerDbContext>()
-                .AsSelf();
+            builder.RegisterType<FriendOrganizerDbContext>().AsSelf();
 
-            builder
-                .RegisterType<MainViewModel>()
-                .AsSelf();
+            builder.RegisterType<MainViewModel>().AsSelf();
 
-            builder
-                .RegisterType<NavigationViewModel>()
-                .As<INavigationViewModel>();
+            builder.RegisterType<NavigationViewModel>().As<INavigationViewModel>();
 
-            builder
-                .RegisterType<FriendDetailViewModel>()
-                .As<IFriendDetailViewModel>();
+            builder.RegisterType<MainWindow>().AsSelf();
 
-            builder
-                .RegisterType<MainWindow>()
-                .AsSelf();
+            builder.RegisterType<MessageDialogService>().As<IMessageDialogService>();
 
-            builder
-                .RegisterType<FriendRepository>()
-                .As<IFriendRepository>();
+            builder.RegisterType<MeetingDetailViewModel>()
+                .Keyed<IDetailViewModel>(nameof(MeetingDetailViewModel));
+            builder.RegisterType<FriendDetailViewModel>()
+                .Keyed<IDetailViewModel>(nameof(FriendDetailViewModel));
 
-            builder
-                .RegisterType<LookupDataService>()
-                .AsImplementedInterfaces();
-
-            builder
-                .RegisterType<MessageDialogService>()
-                .As<IMessageDialogService>();
+            builder.RegisterType<LookupDataService>().AsImplementedInterfaces();
+            builder.RegisterType<FriendRepository>().As<IFriendRepository>();
+            builder.RegisterType<MeetingRepository>().As<IMeetingRepository>();
 
             return builder.Build();
         }
